@@ -12,6 +12,19 @@
         zmk,keymap = &default_layer;
     };
 
+    behaviors {
+        /* BT Reset 键双功能：
+         * 单击 = 清空蓝牙配对（BT_CLR_ALL）
+         * 双击 = 进 bootloader 刷机模式（&bootloader，无需按 RST）
+         */
+        td_bt: td_bt {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&bt BT_CLR_ALL>, <&bootloader>;
+        };
+    };
+
     default_layer: keymap {
         compatible = "zmk,keymap";
 
@@ -19,7 +32,7 @@
             bindings = <
                 &kp F5  &kp F13 &kp F14 &kp F15 &kp F16
                 &kp F17 &kp F18 &kp F19 &kp F20 &kp RET
-                &kp DEL  &bt BT_CLR_ALL  &none   &none   &none
+                &kp DEL  &td_bt  &none   &none   &none
             >;
         };
     };
