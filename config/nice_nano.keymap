@@ -10,7 +10,7 @@
 
 / {
     chosen {
-        zmk,keymap = default_layer;
+        zmk,keymap = &default_layer;
     };
 
     default_layer: keymap {
