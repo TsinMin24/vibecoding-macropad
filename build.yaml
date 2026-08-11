@@ -1,0 +1,7 @@
+# ZMK Build Configuration
+# Nice Nano with 2x5 layout for Vibe Coding workflow
+
+include:
+  - board: nice_nano
+    cmake_args:
+      - ZMK_KEYBOARD="nice_nano"
