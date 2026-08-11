@@ -6,7 +6,7 @@ Custom ZMK firmware for Nice Nano keyboard controller, optimized for Vibe Coding
 
 - **2x5 Compact Layout** - Horizontal row design
 - **Dual-mode Support** - USB wired + Bluetooth wireless
-- **Special Key Bindings** - F5, F13-F20, Enter, Delete
+- **Special Key Bindings** - F5, F13-F20, Enter, Delete, Bluetooth Reset
 
 ## Physical Layout
 
@@ -16,7 +16,7 @@ Custom ZMK firmware for Nice Nano keyboard controller, optimized for Vibe Coding
 ├─────┼─────┼─────┼─────┼─────┤
 │ F17 │ F18 │ F19 │ F20 │Enter│
 └─────┴─────┴─────┴─────┴─────┘
-         Delete (matrix position 10)
+         Delete (matrix position 10)   BT Reset (matrix position 11)
 ```
 
 ## Key Mappings for Vibe Coding
@@ -31,6 +31,7 @@ Custom ZMK firmware for Nice Nano keyboard controller, optimized for Vibe Coding
 | F17-F20 | Code navigation/editing |
 | Enter | Confirm/execute          |
 | Delete | Delete selected code    |
+| BT Reset | Clear all Bluetooth pairings |
 
 ## Building Firmware
 
@@ -59,6 +60,19 @@ west build -p -b nice_nano -- -DZMK_CONFIG=config
 Build output: `build/zephyr/zmk.uf2`
 
 ## Flashing Firmware
+
+### Pre-built Firmware (`firmware/`)
+
+已由 GitHub Actions 编译好的固件放在 `firmware/` 目录：
+
+| 文件 | 说明 |
+|------|------|
+| `nice_nano-v2.uf2` | 正常固件（nice!nano v2，市售新版） |
+| `nice_nano-v1.uf2` | 正常固件（nice!nano v1 旧版） |
+| `nice_nano-v2-settings-reset.uf2` | 清空蓝牙配对/设置（v2） |
+| `nice_nano-v1-settings-reset.uf2` | 清空蓝牙配对/设置（v1） |
+
+烧录：双击 RST 进入 bootloader，把 `.uf2` 拖进弹出的 U 盘即可。
 
 ### Step 1: Enter Bootloader Mode
 

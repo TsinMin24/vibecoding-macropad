@@ -17,6 +17,7 @@
  *   位置 8  F20    -> D19 (P0.02)
  *   位置 9  Enter  -> D20 (P0.29)
  *   位置 10 Delete -> D21 (P0.31)
+ *   位置 11 BT重置 -> D0  (P0.08)
  */
 
 / {
@@ -40,6 +41,7 @@
             , <&pro_micro 19 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D19 = P0.02  F20  */
             , <&pro_micro 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D20 = P0.29  Enter*/
             , <&pro_micro 21 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D21 = P0.31  Del  */
+            , <&pro_micro 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D0  = P0.08  BT Reset */
             ;
     };
 };
