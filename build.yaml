@@ -1,7 +1,8 @@
 # ZMK Build Configuration
-# Nice Nano with 2x5 layout for Vibe Coding workflow
+# nice!nano 2x5 Vibe Coding Macropad（直连模式）
 
 include:
   - board: nice_nano
-    cmake_args:
-      - ZMK_KEYBOARD="nice_nano"
+  - board: nice_nano
+    shield: settings_reset
+    artifact-name: nice_nano-settings-reset
