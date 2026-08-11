@@ -1,31 +1,7 @@
-name: Build ZMK Firmware
+name: Build ZMK firmware
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/zmkfirmware/zmk-build:stable
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build ZMK firmware
-        run: |
-          west build -p -b nice_nano -- -DZMK_CONFIG=${GITHUB_WORKSPACE}/config
-
-      - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: build/zephyr/zmk.uf2
-          retention-days: 30
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
