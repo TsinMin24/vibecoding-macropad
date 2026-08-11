@@ -1,0 +1,45 @@
+/*
+ * nice!nano v2 2x5 macropad 直连（Direct GPIO）定义
+ * 与 config/nice_nano.overlay 相同，v2 板单独命名。
+ *
+ * 每颗按键独立占用一个 GPIO，不需要二极管：
+ *   按键一脚 -> GPIO，另一脚 -> GND（公共地线）
+ *
+ * 按键顺序与 keymap 位置一一对应（input-gpios 的顺序）：
+ *   位置 0  F5     -> D4  (P0.22)
+ *   位置 1  F13    -> D5  (P0.24)
+ *   位置 2  F14    -> D6  (P1.00)
+ *   位置 3  F15    -> D7  (P0.11)
+ *   位置 4  F16    -> D8  (P1.04)
+ *   位置 5  F17    -> D9  (P1.06)
+ *   位置 6  F18    -> D10 (P0.09)
+ *   位置 7  F19    -> D18 (P1.15)
+ *   位置 8  F20    -> D19 (P0.02)
+ *   位置 9  Enter  -> D20 (P0.29)
+ *   位置 10 Delete -> D21 (P0.31)
+ */
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios
+            = <&pro_micro 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D4  = P0.22  F5   */
+            , <&pro_micro 5  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D5  = P0.24  F13  */
+            , <&pro_micro 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D6  = P1.00  F14  */
+            , <&pro_micro 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D7  = P0.11  F15  */
+            , <&pro_micro 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D8  = P1.04  F16  */
+            , <&pro_micro 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D9  = P1.06  F17  */
+            , <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D10 = P0.09  F18  */
+            , <&pro_micro 18 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D18 = P1.15  F19  */
+            , <&pro_micro 19 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D19 = P0.02  F20  */
+            , <&pro_micro 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D20 = P0.29  Enter*/
+            , <&pro_micro 21 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* D21 = P0.31  Del  */
+            ;
+    };
+};
