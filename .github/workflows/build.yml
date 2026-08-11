@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'config/**'
-      - 'build.yaml'
   pull_request:
     branches:
       - main
@@ -16,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: zmkfirmware/zmk
+      image: ghcr.io/zmkfirmware/zmk-build:stable
 
     steps:
       - name: Checkout
@@ -24,11 +21,11 @@ jobs:
 
       - name: Build ZMK firmware
         run: |
-          west build -p -b nice_nano -- -DZMK_CONFIG=config
+          west build -p -b nice_nano -- -DZMK_CONFIG=${GITHUB_WORKSPACE}/config
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: build/zephyr/zmk.uf2
-          retention-days: 7
+          retention-days: 30
