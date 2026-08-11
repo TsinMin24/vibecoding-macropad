@@ -1,0 +1,7 @@
+/*
+ * 这个文件用于 settings_reset 构建：
+ * 因为 overlay 候选按顺序取第一个存在的文件，
+ * 有了它之后 config/nice_nano.overlay 就不会被套用到
+ * settings_reset 固件上（避免和 settings_reset shield 的
+ * mock kscan 冲突）。内容留空即可。
+ */
